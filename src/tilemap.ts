@@ -25,7 +25,7 @@ import {
 // - Procedurally generate the map
 const tileMapSource: string[] = [
   'P',
-  '        ',
+  '       C',
   '11111111',
   '11111111',
   '11111111',

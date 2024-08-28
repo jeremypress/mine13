@@ -11,6 +11,8 @@ import {
   TILE_SIZE,
   WIDTH,
 } from './constants';
+import { KEY_UP } from './keys';
+import { Entity } from './entity';
 import {
   ENTITY_TYPE_COIN,
   ENTITY_TYPE_JUMPPAD,
@@ -123,9 +125,17 @@ function collisionDetectionEntityToEntity(): void {
     for (const other of entities) {
       if (entity !== other && entity.distance(other) < TILE_SIZE) {
         if (entity === player && other.entityType === ENTITY_TYPE_COIN) {
-          score += 100;
-          other.health = 0;
-          zzfx(...coinSound);
+          if (keys[KEY_UP].downCount === 1) {
+            entities.splice(entities.indexOf(other), 1);
+            for (let i = 0; i < 3; i++) {
+              new Entity(ENTITY_TYPE_JUMPPAD, other.x, other.y);
+              // Give each new entity random velocity
+              const randomVelocity = () => (Math.random() - 0.5) * 0.5; // Generates a random number between -0.1 and 0.1
+              entities[entities.length - 1].dx = randomVelocity();
+              entities[entities.length - 1].dy = randomVelocity() - 0.1; // Slight upward bias
+            }
+            zzfx(...coinSound);
+          }
         }
         if (entity === player && other.entityType === ENTITY_TYPE_JUMPPAD) {
           player.y = Math.min(player.y, other.y - 8);
