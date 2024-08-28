@@ -18,7 +18,7 @@ import {
   ENTITY_TYPE_WALKING_ENEMY,
   entities,
 } from './entity';
-import { KEY_A, KEY_D, KEY_LEFT, KEY_RIGHT, KEY_Z, initKeys, keys, updateKeys } from './keys';
+import { KEY_A, KEY_D, KEY_LEFT, KEY_RIGHT, KEY_SPACE, initKeys, keys, updateKeys } from './keys';
 import { initMouse, updateMouse } from './mouse';
 import { coinSound, hurtSound, jumpPadSound, jumpSound } from './sounds';
 import { collisionDetectionEntityToTile, getTile, initTileMap } from './tilemap';
@@ -76,7 +76,7 @@ function handleInput(): void {
     player.dx = 0;
   }
 
-  if (keys[KEY_Z].downCount === 1 && player.grounded) {
+  if (keys[KEY_SPACE].downCount === 1 && player.grounded) {
     player.dy = -PLAYER_JUMP_POWER;
     zzfx(...jumpSound);
   }
@@ -92,7 +92,7 @@ function updateEntities(): void {
   for (let i = entities.length - 1; i >= 0; i--) {
     const entity = entities[i];
 
-    if (entity === player && keys[KEY_Z].down) {
+    if (entity === player && keys[KEY_SPACE].down) {
       player.dy += dt * FLOATY_GRAVITY;
     } else if (entity.entityType !== ENTITY_TYPE_COIN) {
       entity.dy += dt * GRAVITY;
