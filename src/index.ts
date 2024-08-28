@@ -57,7 +57,7 @@ function gameLoop(newTime: number): void {
     handleInput();
     updateEntities();
     collisionDetection();
-    updateCamera();
+    // updateCamera();
   }
 
   render();
@@ -190,9 +190,11 @@ function drawTileMap(): void {
   for (let y = 0; y < TILEMAP_HEIGHT; y++) {
     for (let x = 0; x < TILEMAP_WIDTH; x++) {
       const tile = getTile(x, y);
+      console.log(viewportX);
       if (tile > 0) {
         const tx = (tile - 1) * TILE_SIZE;
         const ty = 24;
+
         ctx.drawImage(
           image,
           tx,

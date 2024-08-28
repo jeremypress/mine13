@@ -37,6 +37,7 @@ const tileMapSource: string[] = [
 const tileMap: number[][] = [];
 
 export function initTileMap(): Entity {
+  console.log(TILEMAP_HEIGHT, TILEMAP_WIDTH, TILE_SIZE);
   let player: Entity | undefined = undefined;
 
   for (let y = 0; y < TILEMAP_HEIGHT; y++) {
