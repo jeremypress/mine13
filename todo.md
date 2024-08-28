@@ -1,0 +1,7 @@
+- [ ] figure out why map is not at 0, 0
+- [ ] build item collection
+- [ ] build timer mechanic
+- [ ] experiment with platforming mechanics
+- [ ] fun check
+- [ ] start planning graphics
+- [ ] design levels
